@@ -26,31 +26,40 @@ AI FDE 不重新发明一个通用 Agent 平台，而是解决 AI 落地的最�
 
 未验证：真人 Teach、真实企业系统、Windows/跨应用生产链、生产级稳定性。
 
-## 快速复现 P0
+## 一键复现核心验真逻辑
+
+仓库提供一个零第三方依赖的公开复现脚本，用来复核 **Business Skill V2 → Day-2 新数据执行 → Independent Verification → Fault Fail-Closed**：
 
 ```bash
-cd demo
-python -m pip install -r requirements.txt
-python run_spike.py
+python demo/run_demo.py
 ```
 
-完整结果与证据见 `evidence/`。
+它不是对 Walker 原始浏览器录制 Spike 的替代；原始浏览器运行结果和关键产物保存在 `evidence/`。公开脚本用于让评审快速复核核心业务规则、结果验真和故障拒绝逻辑。
 
 ## 目录
 
-- `docs/`：报名文案、项目计划书、技术架构、合规说明
-- `demo/`：最小可运行 P0 Spike
-- `fixtures/`：Day-1 / Day-2 合成业务数据与用户修正规则
-- `schemas/`：Business Skill / Execution Request Schema
-- `evidence/`：Semantic Trace、Skill V1/V2、Day-2 执行、独立验真、故障轨与 Manifest
+- `demo/`：最小可运行公开复现
+- `fixtures/`：Day-1 / Day-2 合成业务数据与用户确认规则
+- `evidence/`：Semantic Trace、Business Skill V1/V2、Day-2 执行、独立验真与故障轨
+- `docs/`：P0 技术验证摘要、原创/IP/数据合规说明
 
 ## 核心边界
 
-1. Adapt to the Business, not Reform the Business.
+1. **Adapt to the Business, not Reform the Business.** 系统先适应企业现有流程，不默认改革企业。
 2. AI 推断不能自动升级为企业事实。
 3. 用户可以修改规则、人工 Gate 与验收标准，并形成新 Skill 版本。
 4. 稳定步骤优先确定性执行，AI 主要用于理解、异常和模糊判断。
 5. Agent 自报完成不算完成，真实业务状态独立验真后才算完成。
+
+## Evidence 快速入口
+
+- [`evidence/semantic-trace.json`](evidence/semantic-trace.json)：底层操作编译后的业务语义动作
+- [`evidence/business-skill-v1.json`](evidence/business-skill-v1.json)：保留 Observed / Hypothesis / Unknown 的 V1
+- [`evidence/business-skill-v2.json`](evidence/business-skill-v2.json)：用户确认规则后的 V2
+- [`evidence/day2-execution-report.json`](evidence/day2-execution-report.json)：新数据执行结果，net sales = 15000
+- [`evidence/system-of-record-verifier-response.json`](evidence/system-of-record-verifier-response.json)：独立只读验真，VERIFIED
+- [`evidence/negative-fault-run.json`](evidence/negative-fault-run.json)：UI 显示成功但后端未落库，HALTED_NOT_VERIFIED
+- [`docs/p0-tech-validation-summary.md`](docs/p0-tech-validation-summary.md)：P0 验证摘要与边界
 
 ## 验证包哈希
 
