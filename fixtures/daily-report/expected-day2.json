@@ -1,0 +1,10 @@
+{
+  "date": "2026-08-21",
+  "gross_sales": 16000,
+  "refunds": 1000,
+  "net_sales": 15000,
+  "change_ratio": 0.25,
+  "note_must_contain": ["25", "15"],
+  "record_count": 1,
+  "verification": "VERIFIED"
+}
