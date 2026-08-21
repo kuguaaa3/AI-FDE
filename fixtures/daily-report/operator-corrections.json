@@ -1,0 +1,9 @@
+{
+  "source": "USER_CONFIRMED_FIXTURE",
+  "changes": [
+    {"type": "CONFIRM_RULE", "rule_id": "net_sales_formula", "value": "gross_sales - refunds"},
+    {"type": "CONFIRM_RULE", "rule_id": "significant_change_threshold", "value": 0.15},
+    {"type": "CONFIRM_RULE", "rule_id": "significant_change_action", "value": "annotate_note_and_continue_submit"},
+    {"type": "CONFIRM_ACCEPTANCE", "rule_id": "post_submit_verification", "value": "independent_system_of_record_required"}
+  ]
+}
