@@ -1,0 +1,15 @@
+{
+  "verification": "VERIFIED",
+  "read_only_endpoint": "/api/records",
+  "reasons": [],
+  "response": {
+    "records": [{
+      "date": "2026-08-21",
+      "gross_sales": 16000,
+      "refunds": 1000,
+      "net_sales": 15000,
+      "note": "Significant change 25% exceeds confirmed 15% threshold"
+    }],
+    "record_count": 1
+  }
+}
