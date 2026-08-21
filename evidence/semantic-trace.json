@@ -1,0 +1,12 @@
+{
+  "compiler": "p0-deterministic-semantic-compiler-v1",
+  "recording_id": "daily-report-day1-automated-001",
+  "compiled_at": "2026-08-21T13:33:00.098145+00:00",
+  "actions": [
+    {"action_id": "A1", "action": "查看经营数据", "evidence_refs": ["recording:event:1"]},
+    {"action_id": "A2", "action": "读取/使用 gross sales", "evidence_refs": ["recording:event:3"]},
+    {"action_id": "A3", "action": "读取/使用 refunds", "evidence_refs": ["recording:event:4"]},
+    {"action_id": "A4", "action": "填写 net sales", "evidence_refs": ["recording:event:18"]},
+    {"action_id": "A5", "action": "提交日报", "evidence_refs": ["recording:event:22", "recording:event:21"]}
+  ]
+}
