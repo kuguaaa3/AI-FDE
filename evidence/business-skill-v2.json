@@ -1,0 +1,37 @@
+{
+  "skill_id": "daily-report-skill",
+  "name": "每日经营日报",
+  "version": 2,
+  "goal": "从当日经营数据生成并提交日报",
+  "as_is_process": [
+    {"step_id": "A1", "action": "查看经营数据", "evidence_refs": ["recording:event:1"]},
+    {"step_id": "A2", "action": "读取/使用 gross sales", "evidence_refs": ["recording:event:3"]},
+    {"step_id": "A3", "action": "读取/使用 refunds", "evidence_refs": ["recording:event:4"]},
+    {"step_id": "A4", "action": "填写 net sales", "evidence_refs": ["recording:event:18"]},
+    {"step_id": "A5", "action": "提交日报", "evidence_refs": ["recording:event:22", "recording:event:21"]}
+  ],
+  "confirmed_rules": [
+    {"id": "goal_net_sales", "text": "日报要反映净销售", "status": "CONFIRMED", "source": "task brief"},
+    {"id": "net_sales_formula", "text": "net_sales = gross_sales - refunds", "status": "CONFIRMED", "source": "USER_CONFIRMED_FIXTURE", "value": "gross_sales - refunds"},
+    {"id": "significant_change_threshold", "text": "threshold = 0.15", "status": "CONFIRMED", "source": "USER_CONFIRMED_FIXTURE", "value": 0.15},
+    {"id": "significant_change_action", "text": "annotate_note_and_continue_submit", "status": "CONFIRMED", "source": "USER_CONFIRMED_FIXTURE", "value": "annotate_note_and_continue_submit"},
+    {"id": "post_submit_verification", "text": "independent_system_of_record_required", "status": "CONFIRMED", "source": "USER_CONFIRMED_FIXTURE", "value": "independent_system_of_record_required"}
+  ],
+  "hypotheses": [
+    {"id": "net_sales_formula", "text": "net_sales may equal gross_sales - refunds", "status": "SUPERSEDED", "confidence": 0.7}
+  ],
+  "unknowns": [
+    {"id": "significant_change_threshold", "text": "显著波动的阈值未知", "status": "SUPERSEDED"},
+    {"id": "significant_change_action", "text": "显著波动后的动作未知", "status": "SUPERSEDED"}
+  ],
+  "acceptance_contract": [
+    {"check_id": "exact_values", "description": "Persisted values equal confirmed computation", "verifier": "GET /api/records", "required": true},
+    {"check_id": "single_write", "description": "Exactly one record is stored", "verifier": "GET /api/records", "required": true},
+    {"check_id": "fail_closed", "description": "Any verifier mismatch halts verification", "verifier": "independent verifier", "required": true}
+  ],
+  "execution_binding": {"adapter": "playwright-local-lab", "program_ref": "compiled-program.json", "runtime_parameters": ["day"]},
+  "change_history": [
+    {"version": 1, "source": "AUTOMATED_DEMONSTRATION", "at": "2026-08-21T13:33:00.098339+00:00"},
+    {"change_id": "daily-report-v1-to-v2", "at": "2026-08-21T13:33:00.108692+00:00", "source": "USER_CONFIRMED_FIXTURE", "from_version": 1, "to_version": 2, "changed_rule_ids": ["net_sales_formula", "significant_change_threshold", "significant_change_action", "post_submit_verification"], "affected_tests": ["AC-04-versioning", "AC-05-day2", "AC-06-independent-verifier", "AC-07-fail-closed"]}
+  ]
+}
