@@ -1,0 +1,34 @@
+{
+  "skill_id": "daily-report-skill",
+  "name": "每日经营日报",
+  "version": 1,
+  "goal": "从当日经营数据生成并提交日报",
+  "as_is_process": [
+    {"step_id": "A1", "action": "查看经营数据", "evidence_refs": ["recording:event:1"]},
+    {"step_id": "A2", "action": "读取/使用 gross sales", "evidence_refs": ["recording:event:3"]},
+    {"step_id": "A3", "action": "读取/使用 refunds", "evidence_refs": ["recording:event:4"]},
+    {"step_id": "A4", "action": "填写 net sales", "evidence_refs": ["recording:event:18"]},
+    {"step_id": "A5", "action": "提交日报", "evidence_refs": ["recording:event:22", "recording:event:21"]}
+  ],
+  "observed_facts": [
+    {"id": "uses_gross_sales", "text": "Demonstration read and used gross sales", "status": "OBSERVED", "source": "daily-report-day1-automated-001"},
+    {"id": "uses_refunds", "text": "Demonstration read and used refunds", "status": "OBSERVED", "source": "daily-report-day1-automated-001"}
+  ],
+  "confirmed_rules": [
+    {"id": "goal_net_sales", "text": "日报要反映净销售", "status": "CONFIRMED", "source": "task brief"}
+  ],
+  "hypotheses": [
+    {"id": "net_sales_formula", "text": "net_sales may equal gross_sales - refunds", "status": "HYPOTHESIS", "source": "compiler proposal from one demonstration", "confidence": 0.7}
+  ],
+  "unknowns": [
+    {"id": "significant_change_threshold", "text": "显著波动的阈值未知", "status": "UNKNOWN"},
+    {"id": "significant_change_action", "text": "显著波动后的动作未知", "status": "UNKNOWN"}
+  ],
+  "acceptance_contract": [
+    {"check_id": "exact_values", "verifier": "GET /api/records", "required": true},
+    {"check_id": "single_write", "verifier": "GET /api/records", "required": true},
+    {"check_id": "fail_closed", "verifier": "independent verifier", "required": true}
+  ],
+  "execution_binding": {"adapter": "playwright-local-lab", "program_ref": "compiled-program.json", "runtime_parameters": ["day"]},
+  "change_history": [{"version": 1, "source": "AUTOMATED_DEMONSTRATION", "at": "2026-08-21T13:33:00.098339+00:00"}]
+}
