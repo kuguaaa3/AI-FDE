@@ -1,0 +1,17 @@
+{
+  "run_id": "day2-honest",
+  "classification": ["SYNTHETIC_FIXTURE", "LOCAL_BROWSER"],
+  "skill_id": "daily-report-skill",
+  "skill_version": 2,
+  "source_read_from_dom": {"date": "2026-08-21", "gross_sales": 16000, "refunds": 1000, "previous_net_sales": 12000},
+  "computed": {"net_sales": 15000, "change_ratio": 0.25, "note": "Significant change 25% exceeds confirmed 15% threshold"},
+  "ui_success_banner": true,
+  "independent_verifier": {
+    "verification": "VERIFIED",
+    "read_only_endpoint": "/api/records",
+    "reasons": [],
+    "response": {"records": [{"date": "2026-08-21", "gross_sales": 16000, "refunds": 1000, "net_sales": 15000, "note": "Significant change 25% exceeds confirmed 15% threshold"}], "record_count": 1}
+  },
+  "outcome": "VERIFIED",
+  "completed_at": "2026-08-21T13:33:00.571603+00:00"
+}
