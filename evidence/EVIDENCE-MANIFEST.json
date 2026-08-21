@@ -1,0 +1,15 @@
+{
+  "spike_id": "AI-FDE-DEMO2SKILL-SPIKE-001",
+  "generated_at": "2026-08-21T13:36:17Z",
+  "verdict": "CORE ENGINE PASS / HUMAN TEACH NOT YET VERIFIED",
+  "artifacts": [
+    {"path": "evidence/custom-recording.json", "sha256": "3df5977ab3081c760cb94cd3a65cff40569ab91ecc53a92fcedf3ad753bcb6b1", "claim_mapping": ["AC-01 real automated event recording", "22 runtime events / 16 trusted DOM events"]},
+    {"path": "evidence/semantic-trace.json", "sha256": "4af5e3a88008300bdf32d18cfe07279c35a288504dc31b417f2a91ba9cbe2201", "claim_mapping": ["AC-02 five required business actions"]},
+    {"path": "evidence/business-skill-v1.json", "sha256": "2254b0e14b0b08b1a39c128ec819f4fcf6c49095c8d871c414372e7e15990d48", "claim_mapping": ["AC-03 truth boundary", "V1 retained"]},
+    {"path": "evidence/business-skill-v2.json", "sha256": "3f08e5e460b2ae26c489e91ba248595c350861aefdec33873231e2eb04c64af2", "claim_mapping": ["AC-04 version 2", "AC-05 confirmed runtime rules"]},
+    {"path": "evidence/day2-execution-report.json", "sha256": "1695d52c38b5da95c2b15efc51d545e46eb26d769a92cd92d2bff721174b3e6b", "claim_mapping": ["AC-05 Day-2 new input execution", "net_sales 15000", "25%/15% note"]},
+    {"path": "evidence/system-of-record-verifier-response.json", "sha256": "71bf7decea284015eb3412bca319d515b8f58220498ad5d41830dd4845775ae4", "claim_mapping": ["AC-06 independent read-only exact verification"]},
+    {"path": "evidence/negative-fault-run.json", "sha256": "e4f8a295fe11d3135571cb376ec36a602e3ce6dd13185784e3ca0e7c46a0e3b9", "claim_mapping": ["AC-07 UI success vs empty store", "HALTED_NOT_VERIFIED"]}
+  ],
+  "note": "This public repository includes a submission-oriented subset of the original Walker evidence. The original Return ZIP SHA-256 is edb8ef793b4ec9580049a6d208655f505d285626bf8bb4cbe5b9caec33ab2d86. OpenAdapt status remains PARTIAL and human Teach remains NOT VERIFIED."
+}
